@@ -41,20 +41,7 @@ public class UserResource {
 		if(user==null) {
 			throw new UserNotFoundException("id-" + id);
 		}
-		
-		//pass user to resource to include data of user in obj
-		//Resource<User> resource = new Resource<>(user);
-		
-		//get the link to the resource 
-		//ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).retrieveAllUsers());	
-		
-		//pass how you want to call the link in hateoas
-		//resource.add(linkTo.withRel("all-users"))
-		//return resource
-		
-		//returns data of user along with links back
-		
-		
+			
 		return user;
 	}
 	
@@ -85,22 +72,7 @@ public class UserResource {
     	}
     }
 	
-	@GetMapping("/users/{id}/posts")
-	public List<Post> retrieveAllUserPosts(@PathVariable int id) {
-		User user = service.findOne(id);
-		List<Post> userPosts = user.getPosts();
-		return userPosts;
-	}
-	
-	@PostMapping("/users/{id}/posts")
-	public void createPost(@RequestBody Post post, @PathVariable int id) {
-		User user = service.findOne(id);
-		List<Post> userPosts = service.retrieveAllPosts(user);
-		userPosts.add(post);
-		user.setPosts(userPosts);
-		service.save(user);	
-	}
-	
+    
 	@GetMapping("/users/{id}/posts/{post_id}")
 	public String retrievePostDetails() {
 		return "";

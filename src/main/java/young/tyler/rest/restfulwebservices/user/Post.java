@@ -1,47 +1,71 @@
 package young.tyler.rest.restfulwebservices.user;
 
-import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
 public class Post {
-	private int id;
-	private Date timestamp;
-	private String content;
-	private String author;
 	
-	public Post() {};
+	@Id
+	@GeneratedValue
+	private Integer id;
 	
-	public Post(String content, String author) {
+	private String description;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JsonIgnore
+	private User user;
+	
+	public Post() {}
+
+	
+	public Post(Integer id, String description, User user) {
 		super();
-		this.timestamp = new Date();
-		this.content = content;
-		this.author = author;
+		this.id = id;
+		this.description = description;
+		this.user = user;
 	}
 
-	public Date getTimestamp() {
-		return timestamp;
+
+	public Integer getId() {
+		return id;
 	}
 
-	public void setTimestamp(Date timestamp) {
-		this.timestamp = timestamp;
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public String getContent() {
-		return content;
+
+	public String getDescription() {
+		return description;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public String getAuthor() {
-		return author;
+
+	public User getUser() {
+		return user;
 	}
 
-	public void setAuthor(String author) {
-		this.author = author;
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
-	
-	
+
+	@Override
+	public String toString() {
+		return "Post [id=" + id + ", description=" + description + "]";
+	}
+
 
 }

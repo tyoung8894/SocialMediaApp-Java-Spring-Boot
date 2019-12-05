@@ -52,9 +52,9 @@ public class UserDaoService {
 		return null;
 	}
 	
-	public List<Post> retrieveAllPosts(User user) {
-		return user.getPosts();
-	}
+//	public List<Post> retrieveAllPosts(User user) {
+//		return user.getPosts();
+//	}
 	
 	
 	
